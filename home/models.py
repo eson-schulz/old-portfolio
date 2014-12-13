@@ -11,7 +11,7 @@ class Job(models.Model):
 # Limit abouts created to two
 def validate_only_two_instances(obj):
 	model = obj.__class__
-	if (model.objects.count() > 1 and
+	if (model.objects.count() > 2 and
 			not obj.id in [model.id for model in model.objects.all()]):
 		raise ValidationError("Can only create 2 {} instance".format(model.__unicode__))
 

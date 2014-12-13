@@ -171,7 +171,7 @@
                 </div>
             </div>
             <div class="row">
-                {% if about|length_is:"2" %}
+                {% if about|length_is:"3" %}
                     <div class="col-lg-4 col-lg-offset-2">
                         <p>{{ about.0 }}</p>
                     </div>
@@ -182,7 +182,7 @@
                     Error: No about
                 {% endif %}
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">
+                    <a href="#" class="btn btn-lg btn-outline">git 
                         <i class="fa fa-download"></i> Resume
                     </a>
                 </div>
@@ -276,7 +276,11 @@
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>About Ethan</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        {% if about|length_is:"3" %}
+                            <p>{{ about.2 }}</p>
+                        {% else %}
+                            Error: No about
+                        {% endif %}
                     </div>
                 </div>
             </div>
