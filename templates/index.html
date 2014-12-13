@@ -171,18 +171,26 @@
                 </div>
             </div>
             <div class="row">
-                {% if about|length_is:"3" %}
                     <div class="col-lg-4 col-lg-offset-2">
-                        <p>{{ about.0 }}</p>
+                        <p>
+                        {% if first_paragraph %}
+                            {{ first_paragraph }}
+                        {% else %}
+                            Error: No first paragraph provided
+                        {% endif %}
+                        </p>
                     </div>
                     <div class="col-lg-4">
-                        <p>{{ about.1 }}</p>
+                        <p>
+                        {% if second_paragraph %}
+                            {{ second_paragraph }}
+                        {% else %}
+                            Error: No second paragraph provided
+                        {% endif %}
+                        </p>
                     </div>
-                {% else %}
-                    Error: No about
-                {% endif %}
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">git 
+                    <a href="#" class="btn btn-lg btn-outline">
                         <i class="fa fa-download"></i> Resume
                     </a>
                 </div>
@@ -276,10 +284,10 @@
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>About Ethan</h3>
-                        {% if about|length_is:"3" %}
-                            <p>{{ about.2 }}</p>
+                        {% if footer_paragraph %}
+                            <p>{{ footer_paragraph }}</p>
                         {% else %}
-                            Error: No about
+                            Error: No footer paragraph provided
                         {% endif %}
                     </div>
                 </div>
