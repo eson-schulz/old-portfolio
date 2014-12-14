@@ -5,7 +5,7 @@ def index(request):
 	context_dict = {}
 
 	job_list = Job.objects.order_by('id')
-	jobs = '- '.join([job.name for job in job_list])
+	jobs = ' - '.join([job.name for job in job_list])
 	context_dict['jobs'] = jobs
 
 	# Gets the item that's the first paragraph, second paragraph, etc
