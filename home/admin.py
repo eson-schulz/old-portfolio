@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import Job, About
+from home.models import Job, About, Project
 
 class AboutAdmin(admin.ModelAdmin):
 
@@ -7,3 +7,4 @@ class AboutAdmin(admin.ModelAdmin):
 
 admin.site.register(Job)
 admin.site.register(About, AboutAdmin)
+admin.site.register(Project)

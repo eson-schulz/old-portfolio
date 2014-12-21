@@ -24,5 +24,5 @@ class Project(models.Model):
 	name = models.CharField(max_length=64, unique=True)
 	image = models.ImageField(upload_to='/projects')
 	description = models.TextField()
-	source = models.CharField(max_length=128)
-	kind = models.CharField(max_length=32)
+	source = models.CharField(max_length=128, help_text='The url of the source of the project')
+	kind = models.CharField(max_length=32, help_text='Example: Desktop App, Webserver, Python Script')
