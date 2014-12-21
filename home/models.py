@@ -19,3 +19,10 @@ class About(models.Model):
 
 	def __unicode__(self):
 		return self.description
+
+class Project(models.Model):
+	name = models.CharField(max_length=64, unique=True)
+	image = models.ImageField(upload_to='/projects')
+	description = models.TextField()
+	source = models.CharField(max_length=128)
+	kind = models.CharField(max_length=32)
