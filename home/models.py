@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+import datetime
 
 class Job(models.Model):
 	name = models.CharField(max_length=32, unique=True)
@@ -26,3 +27,4 @@ class Project(models.Model):
 	description = models.TextField()
 	source = models.CharField(max_length=128, help_text='The url of the source of the project')
 	kind = models.CharField(max_length=32, help_text='Example: Desktop App, Webserver, Python Script')
+	date = models.DateField(default=datetime.date.today, help_text='Date created')
