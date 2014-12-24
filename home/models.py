@@ -25,9 +25,34 @@ class Project(models.Model):
 	name = models.CharField(max_length=64, unique=True)
 	image = models.ImageField(upload_to='projects')
 	description = models.TextField()
-	source = models.CharField(max_length=128, help_text='The url of the source of the project')
+	source = models.URLField(help_text='The url of the source of the project')
 	kind = models.CharField(max_length=32, help_text='Example: Desktop App, Webserver, Python Script')
 	date = models.DateField(default=datetime.date.today, help_text='Date created')
 
 	def __unicode__(self):
 		return self.name
+
+# Used to make sure only one instance of an object is created
+def validate_only_one_instance(obj):
+    model = obj.__class__
+    if (model.objects.count() > 0 and
+            obj.id != model.objects.get().id):
+        raise ValidationError("Can only create 1 {}".format(model.__name__))
+
+class Resume(models.Model):
+	resume = models.FileField()
+
+	def clean(self):
+		validate_only_one_instance(self)
+
+	def __unicode__(self):
+		return "Resume"
+
+class Github(models.Model):
+	link = models.URLField()
+
+	def clean(self):
+		validate_only_one_instance(self)
+
+	def __unicode__(self):
+		return "Github"
