@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from home.models import Job, About, Github, Project, Resume
+from home.models import Job, About, Github, Project, Resume, Skill
+import math
 
 def index(request):
 	context_dict = {}
@@ -8,6 +9,15 @@ def index(request):
 	job_list = Job.objects.order_by('id')
 	jobs = ' - '.join([job.name for job in job_list])
 	context_dict['jobs'] = jobs
+
+	# Gets the list of names of skills in two columns for formatting
+	if(len(Skill.objects.all()) > 0):
+		skill_list = Skill.objects.order_by('id')
+		middle = int(math.ceil(len(skill_list)/2.0))
+		skills_1 = ', '.join([skill.name for skill in skill_list[:middle]])
+		skills_2 = ', '.join([skill.name for skill in skill_list[middle:]])
+		context_dict['skills_1'] = skills_1
+		context_dict['skills_2'] = skills_2
 
 	# Gets the item that's the first paragraph, second paragraph, etc
 	name = ('first_paragraph', 'second_paragraph', 'footer_paragraph')
