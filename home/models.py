@@ -56,3 +56,9 @@ class Github(models.Model):
 
 	def __unicode__(self):
 		return "Github"
+
+class Skill(models.Model):
+	name = models.CharField(max_length=32, unique=True)
+
+	def __unicode__(self):
+		return self.name
