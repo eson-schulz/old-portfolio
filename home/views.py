@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from home.models import Job, About, Project
+from home.models import Job, About, Github, Project, Resume
 
 def index(request):
 	context_dict = {}
@@ -17,6 +17,15 @@ def index(request):
 		except(About.DoesNotExist):
 			context_dict[name[x]] = "Error: " + name[x] + " does not exist."
 
+	# Gets the projects in a list from newest to oldest
 	context_dict['projects'] = Project.objects.order_by('-date')
+
+	# Gets the single resume
+	if(len(Resume.objects.all()) > 0):
+		context_dict['resume'] = Resume.objects.all()[0]
+
+	# Gets the single Github Model
+	if(len(Github.objects.all()) > 0):
+		context_dict['github'] = Github.objects.all()[0]
 
 	return render(request, 'index.html', context_dict)
