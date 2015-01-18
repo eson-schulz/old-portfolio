@@ -1,3 +1,14 @@
-db.sqlite3
+# File Types #
+##############
+*.pyo
+*.pyc
+
+# Directories #
+###############
 home/migrations/*
 media/*
+
+# Specific files #
+##################
+portfolio/settings.py
+db.sqlite3
