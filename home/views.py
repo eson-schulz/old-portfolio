@@ -46,8 +46,6 @@ def index(request):
 		form = ContactForm(request.POST)
 
 		if form.is_valid():
-			context_dict['sent_message'] = "Thanks for the email!"
-
 			# Sends an email
 			subject = "Message from " + form.cleaned_data['name']
 			message = form.cleaned_data['message'] + "\n\n" + "-" * 60 + "\nThis was automatically sent from your website"
@@ -55,7 +53,11 @@ def index(request):
 
 			recipients = [settings.USER_EMAIL]
 
-			send_mail(subject, message, sender, recipients)
+			try:
+				send_mail(subject, message, sender, recipients, fail_silently=False)
+				context_dict['sent_message'] = "Thanks for the email!"
+			except Exception:
+				context_dict['sent_message'] = "The message failed to send, try again soon!"
 
 	else:
 		form = ContactForm()
